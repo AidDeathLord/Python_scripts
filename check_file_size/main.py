@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 
 
 DIR_PATH = '/home/mssql/data/'
@@ -6,7 +7,7 @@ FILE_TO_COMPARE = '/home/admin/compare_file.txt'
 
 NUM = 100000000000
 
-EMAIL = 'in@kompromiss.ru'
+EMAIL = 'mail@mail.ru'
 
 
 def open_file(path: str) -> dict:
@@ -45,9 +46,10 @@ def main():
         new_info = new_info + f'{key} {new_size.get(key)}\n'
         if key in size_to_compare:
             if new_size.get(key) // NUM > int(size_to_compare.get(key)) // NUM:
-                result = result + new_info
+                result = result + f'База {key} достигла размера {new_size.get(key) // 1000000000} Gb\n'
 
     if result != '':
+        result = 'Внимание!\n' + result + f'{datetime.now().date()}'
         os.system(f'mail -s "sql" {EMAIL} <<< "{result}"')
 
     info = open(FILE_TO_COMPARE, 'w')
