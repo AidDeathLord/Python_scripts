@@ -4,10 +4,10 @@ import os
 LOGS_FILE = '/var/log/asterisk/full'
 REPORT_FILE = '/home/report.txt'
 # events
-EVENT = 'Contact 105/'
+EVENT = ''
 
 # email
-EMAIL = 'korolev@kompromiss.ru'
+EMAIL = ''
 
 
 def open_file(path):
